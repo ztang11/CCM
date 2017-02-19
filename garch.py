@@ -23,7 +23,7 @@ df['Log_Returns'] = df.Future.pct_change()
 
 df['AtM_Var'] = df['AtM']**2
 
-df['Norm_AtM_Vol'] = df.AtM.divide(16)
+df['Norm_AtM_Vol'] = df.AtM.divide(math.sqrt(252))
 
 log_mean = df['Log_Returns'].mean()
 norm_AtMVol = df['Norm_AtM_Vol'].mean()
