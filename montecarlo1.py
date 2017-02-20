@@ -27,20 +27,25 @@ def simu_plot(k):
 
 
 
+def main():
+    global T1, S, v, r, T, simulations
+    S = 57.30 # underlying price
+    v = 0.20 # vol of 20%
+    r = 0.0015 # rate of 0.15%
 
+    T1 = (datetime.date(2014,9,30) - datetime.date(2014,9,1)).days
+    T = T1/ 365.0
 
-S = 57.30 # underlying price
-v = 0.20 # vol of 20%
-r = 0.0015 # rate of 0.15%
-T1 = (datetime.date(2014,9,30) - datetime.date(2014,9,1)).days
-T= T1/ 365.0
-simulations = 10000
-payoffs = []
-discount_factor = exp(-r * T)
-k=np.zeros(shape=(simulations,T1))
+    simulations = 10000
+    k=np.zeros(shape=(simulations,T1))
 
-k=simulation_array(k)
+    k=simulation_array(k)
 
-simu_plot(k)
+    simu_plot(k)
+    plt.show()
 
-plt.show()
+    return
+
+if __name__ == "__main__":
+    main()
+    
