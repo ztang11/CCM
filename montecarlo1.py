@@ -1,20 +1,24 @@
-import datetime
+from datetime import datetime
 from random import gauss
 from math import exp, sqrt
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+from pandas.tseries.offsets import BDay
 
 def generate_asset_price(S,v,r,T):
     return S * exp((r - 0.5 * v**2) * T + v * sqrt(T) * gauss(0,1.0))
 
 
-def simulation_array(k):
+def simulation_array(simulations, duration, S, v, r, T):
+    k = np.zeros(shape=(simulations, duration))
     for i in range(0, simulations):
-        for j in range(0, T1):
-            S_T = generate_asset_price(S, v, r, T)
-            k[i, j] = (S_T)
+        for j in range(0, duration):
+            asset_price = generate_asset_price(S, v, r, T)
+            k[i, j] = (asset_price)
     return k
+
 
 def simu_plot(k):
     plt.figure(1)
@@ -23,29 +27,23 @@ def simu_plot(k):
     plt.figure(2)
     for i in k:
         plt.plot(i)
-    return
-
 
 
 def main():
-    global T1, S, v, r, T, simulations
     S = 57.30 # underlying price
     v = 0.20 # vol of 20%
     r = 0.0015 # rate of 0.15%
-
-    T1 = (datetime.date(2014,9,30) - datetime.date(2014,9,1)).days
-    T = T1/ 365.0
-
     simulations = 10000
-    k=np.zeros(shape=(simulations,T1))
+    today = pd.datetime.today()
+    end_date = today
+    start_date = today - BDay(30)
 
-    k=simulation_array(k)
+    duration = (end_date - start_date).days
+    T = duration/ 365.0
 
+    k=simulation_array(simulations, duration, S, v, r, T)
     simu_plot(k)
     plt.show()
 
-    return
-
 if __name__ == "__main__":
     main()
-    
