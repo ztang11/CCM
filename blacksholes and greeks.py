@@ -1,3 +1,5 @@
+from scipy.stats import norm
+
 #Pricing engine module that calculates Option prices and Greeks with black scholes
 #The Black Scholes Formula
 """ 
@@ -9,8 +11,7 @@
 # d - Dividend yield
 # v - Volatility
 """
-from scipy.stats import norm
-from math import *
+
 def BlackScholes(CallPutFlag,S,K,T,r,d,v):
   d1 = (log(float(S)/K)+((r-d)+v*v/2.)*T)/(v*sqrt(T))
   d2 = d1-v*sqrt(T)
@@ -31,8 +32,6 @@ Theta: partial wrt T
 Vega: partial wrt v
 Rho: partial wrt r 
 """
-from scipy.stats import norm
-from math import *
 def Black_Scholes_Greeks_Call(S, K, r, v, T, d):
   T_sqrt = sqrt(T)
   Delta_Call = norm.cdf(d1)
