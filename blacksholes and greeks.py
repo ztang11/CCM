@@ -53,11 +53,10 @@ def Black_Scholes_Greeks_Put(S, K, r, v, T, d):
     return Delta_Put, Gamma_Put, Theta_Put, Vega_Put, Rho_Put
   
   def main():
-    global T1, S, v, r, T
     S=116.43 #Stock price
     K = 120.78 #Strike price
     T1 = (datetime.date(2015,8,30) - datetime.date(2015,6,1)).days
-    T = T1/ 365.0 #Time to maturity
+    T = T1/ 252.0 #Time to maturity
     r = 0.05 #Riskfree interest rate
     d = 0.06 #Dividend yield
     v = 0.35 #Volatility
