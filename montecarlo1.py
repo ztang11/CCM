@@ -27,23 +27,25 @@ def simu_plot(k):
     plt.figure(2)
     for i in k:
         plt.plot(i)
+    return
 
 
 def main():
     S = 57.30 # underlying price
     v = 0.20 # vol of 20%
-    r = 0.0015 # rate of 0.15%
+    r = 0.0015 # rate of 0.15%c
     simulations = 10000
     today = pd.datetime.today()
     end_date = today
-    start_date = today - BDay(30)
+    start_date = today - BDay(20)
 
     duration = (end_date - start_date).days
-    T = duration/ 365.0
+    T = duration/ 252.0
 
     k=simulation_array(simulations, duration, S, v, r, T)
     simu_plot(k)
     plt.show()
+    return
 
 if __name__ == "__main__":
     main()
