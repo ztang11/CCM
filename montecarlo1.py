@@ -4,9 +4,20 @@ from math import exp, sqrt
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+"""
+# S - stock price
+# v - volatility
+# r - riskfree interest rate
+# T - Time to maturity
+"""
+
 
 def generate_asset_price(S,v,r,T):
     return S * exp((r - 0.5 * v**2) * T + v * sqrt(T) * gauss(0,1.0))
+
+""""
+getting the array of the price we generate 
+"""
 
 
 def simulation_array(k):
@@ -16,6 +27,11 @@ def simulation_array(k):
             k[i, j] = (S_T)
     return k
 
+""""
+plotting the simulation array that we got
+""""
+
+
 def simu_plot(k):
     plt.figure(1)
     sns.kdeplot(k[:, -1])
@@ -24,7 +40,9 @@ def simu_plot(k):
     for i in k:
         plt.plot(i)
     return
-
+"""
+define monte carlo simulation
+"""
 
 
 def main():
