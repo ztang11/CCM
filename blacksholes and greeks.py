@@ -52,3 +52,22 @@ def Black_Scholes_Greeks_Put(S, K, r, v, T, d):
   Vega_Put = S * T_sqrt * norm.pdf(d1)
   Rho_Put = -K*T*exp(-r*T) * norm.cdf(-d2)
     return Delta_Put, Gamma_Put, Theta_Put, Vega_Put, Rho_Put
+  
+  def main():
+    global T1, S, v, r, T
+    S=116.43 #Stock price
+    K = 120.78 #Strike price
+    T1 = (datetime.date(2015,8,30) - datetime.date(2015,6,1)).days
+    T = T1/ 365.0 #Time to maturity
+    r = 0.05 #Riskfree interest rate
+    d = 0.06 #Dividend yield
+    v = 0.35 #Volatility
+    print BlackScholes('c',S,K,T,r,d,v)
+    print Black_Scholes_Greeks_Call(S, K, r, v, T, d)
+    print Black_Scholes_Greeks_Put(S, K, r, v, T, d)
+      return
+  
+  
+  
+  
+  
