@@ -27,10 +27,9 @@ def simulation_array(k):
             k[i, j] = (S_T)
     return k
 
-""""
+"""
 plotting the simulation array that we got
-""""
-
+"""
 
 def simu_plot(k):
     plt.figure(1)
